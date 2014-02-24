@@ -32,7 +32,17 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 
 app.post('/hook', function (req, res){
-	console.log(req.body);
+
+	var now = new Date();
+	
+	var fs = require('fs');
+fs.writeFile("test.txt", "Hey there!" + now.getDate(), function(err) {
+    if(err) {
+        console.log(err);
+    } else {
+        console.log("The file was saved!");
+    }
+}); 
 
 });
 
