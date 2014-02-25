@@ -84,7 +84,7 @@ if(commit_msg.indexOf("[redeploy]") != -1)
 	//run script to redeploy based on preferences jSON
 	
 	
-	exec("cd " + hook_pathr +" && git pull " + hook_repo + " " + hook_branch + " && forever start -o " + hook_logname + " -a " + hook_exname,config, puts);
+	exec("forever stop 1 && cd " + hook_pathr +" && git pull " + hook_repo + " " + hook_branch + " && forever start -o " + hook_logname + " -a " + hook_exname,config, puts);
 //	exec("git pull seeder v2_arbor",config, puts);
 //	exec("forever restart 1",config, puts);
 	
