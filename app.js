@@ -36,7 +36,7 @@ app.post('/hook', function (req, res){
 	var now = new Date();
 	
 	var fs = require('fs');
-fs.writeFile("test.txt", "Hey there!" + now.getDate(), function(err) {
+fs.writeFile("git.txt", "There was a push to remote repo at " + now.getTime(), function(err) {
     if(err) {
         console.log(err);
     } else {
