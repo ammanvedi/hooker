@@ -85,6 +85,8 @@ if(commit_msg.indexOf("[redeploy]") != -1)
 	
 	var command = "cd " + hook_path +" && git pull " + hook_repo + " " + hook_branch + " && forever restart 1";
 	
+	console.log('CMD RUN = ' + command);
+	
 	exec(command,config, puts);
 //	exec("git pull seeder v2_arbor",config, puts);
 //	exec("forever restart 1",config, puts);
