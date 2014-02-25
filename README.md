@@ -1,17 +1,24 @@
-hooker
+![hooker](http://i.imgur.com/2Ztk0pb.png)
+
+# hooker
 ======
 
-hooker is a node-js web server that is designed to listen for postdata from a github Web-Hook service, pull the updates if required and re-deploy the application.
+Hooker is a node-js web server that is designed to listen for postdata from a github Web-Hook service, pull the updates if required and re-deploy the application.
 
-hooker runs as a service alongside the application its intended to track and controls its state using ForeverJS
+Hooker runs as a service alongside the application its intended to track and controls its state using ForeverJS
 
-## Usage
+### Usage
 
-1) clone the repo to your server
+* Clone the repo to your server
 
-2) use ForeverJS to start the server as a service eg forever start -o node.log -a app.js
+* Use ForeverJS to start the server as a service eg forever start -o node.log -a app.js
 
-3) edit the configuration file located in public/config/cfg.json with the information of your repo, the format is as follows:
+```bash
+$ cd /path/to/hooker
+$ forever start -o node.log -a app.js
+```
+
+* Edit the configuration file located in public/config/cfg.json with the information of your repo, the format is as follows:
 
 ```json
 {
@@ -25,16 +32,35 @@ hooker runs as a service alongside the application its intended to track and con
 
 | Field      | Description                                                                                   |
 |------------|-----------------------------------------------------------------------------------------------|
-| GITREPO    | the name of the repository, this can either be the name of a remote, or a .git url            |
-| BRANCHNAME | the branch to pull updates from (default : master)                                            |
-| EXNAME     | the name of the node server file (default is app.js i express)                                |
-| LOGNAME    | name of the log file to use when re deploying the server                                      |
-| PATH       | the path to the root of the application (and repository) of the application to be re-deployed |
+| GITREPO    | Name of the repository, this can either be the name of a remote, or a .git url            |
+| BRANCHNAME | Branch to pull updates from (default : master)                                            |
+| EXNAME     | Name of the node server file (default is app.js i express)                                |
+| LOGNAME    | Name of the log file to use when re deploying the server                                      |
+| PATH       | Path to the root of the application (and repository) of the application to be re-deployed |
 
-this JSON file is loaded and read when the server starts, so any changes require that the hooker service be restarted (ie forever restart 0)
+This JSON file is loaded and read when the server starts, so any changes require that the hooker service be restarted, ie;
 
-4) start the application as service 1 in foreverjs (just start it running directly after the hooker server)
+```bash
+$ forever restart 0
+```
 
-5) make sure you have an active webhook that is pointed to yourserver.com:3000/hook
+* Start the application as service 1 in foreverjs (just start it running directly after the hooker server)
 
-6) hooker will listen for push events where the commit message contains the text "[redeploy]" anywhere in the commit message. at which point it will pull the changes and restart the app
+* Make sure you have an active webhook that is pointed to yourserver.com:3000/hook
+
+![webhook setup](http://imgur.com/Y2QI1O0.png)
+
+* Hooker will listen for push events where the commit message contains the text "[redeploy]". At which point it will pull the changes and restart the app
+
+So, for example a push like this from your local environment
+
+```bash
+$ git commit -m "fixed some bug [redeploy]"
+$ git push origin master
+```
+
+Will trigger hooker to pull changes from the remote repository to the webserver
+
+### About
+
+I built this while working on [Seeder](https://github.com/ammanvedi/seeder) as a way to auto deploy the application to an Amazon EC2 server instance. 
