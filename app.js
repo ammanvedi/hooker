@@ -44,7 +44,7 @@ fs.writeFile("/test.txt", "Hey there!" + now.getDate(), function(err) {
     }
 }); 
 
-res.end(200);
+res.send(200);
 
 });
 
