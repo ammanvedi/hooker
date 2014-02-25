@@ -10,6 +10,8 @@ Hooker runs as a service alongside the application its intended to track and con
 ### Requirements 
 [NodeJS](http://nodejs.org/download/) and [Git](http://git-scm.com/book/en/Getting-Started-Installing-Git) (CLI Tools) are required on your webserver as well as [ExpressJS](http://expressjs.com/guide.html) for ease of setup and familiarity of layout.
 
+[Forever](https://github.com/nodejitsu/forever) is also necessary
+
 ### Usage
 
 * Clone the repo to your server
