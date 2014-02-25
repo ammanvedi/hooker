@@ -33,10 +33,12 @@ app.get('/users', user.list);
 
 app.post('/hook', function (req, res){
 
+//the github server will post data here
+
 	var now = new Date();
 	
 	var fs = require('fs');
-fs.writeFile("git.txt", "There was a push to remote repo at " + now.getTime(), function(err) {
+fs.writeFile("git.txt", "There was a push to remote repo at " + now.getTime()+ ' with data ' + req.body, function(err) {
     if(err) {
         console.log(err);
     } else {
