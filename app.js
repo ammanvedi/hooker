@@ -36,7 +36,7 @@ app.post('/hook', function (req, res){
 	var now = new Date();
 	
 	var fs = require('fs');
-fs.writeFile("/test.txt", "Hey there!" + now.getDate(), function(err) {
+fs.writeFile("test.txt", "Hey there!" + now.getDate(), function(err) {
     if(err) {
         console.log(err);
     } else {
