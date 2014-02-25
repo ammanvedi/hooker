@@ -35,23 +35,6 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
-
-app.get('/', routes.index);
-app.get('/users', user.list);
-
-
-
-app.post('/hook', function (req, res){
-
-//the github server will post data here
-var commit_msg = req.body.commits[0].message;
-var printtext;
-var now = new Date();
-
 
 //get the config variables
 
@@ -73,8 +56,31 @@ fs.readFile(__dirname + '/public/config/cfg.json', 'utf8', function (err, data) 
   hook_logname = data.LOGNAME;
   hook_repo = data.GITREPO;
  
-  console.log("cd " + hook_path +" && git pull " + hook_repo + " " + hook_branch + " && forever start -o " + hook_logname + " -a " + hook_exname);
+ // console.log("cd " + hook_path +" && git pull " + hook_repo + " " + hook_branch + " && forever start -o " + hook_logname + " -a " + hook_exname);
+  
+  
+  
 });
+
+
+// development only
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
+
+app.get('/', routes.index);
+app.get('/users', user.list);
+
+
+
+app.post('/hook', function (req, res){
+
+//the github server will post data here
+var commit_msg = req.body.commits[0].message;
+var printtext;
+var now = new Date();
+
+
 
 if(commit_msg.indexOf("[redeploy]") != -1)
 {
