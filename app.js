@@ -34,11 +34,24 @@ app.get('/users', user.list);
 app.post('/hook', function (req, res){
 
 //the github server will post data here
+var commit_msg = req.body.commits[0].message;
+var printtext;
+var now = new Date();
 
-	var now = new Date();
+if(commit_msg.indexOf("[redeploy]") != -1)
+{
+	//the commit message has a redeploy tag, so the script should run
+	printtext = "There was a REDEPLOY push to remote repo at " + now.getTime()+ ' with data ' + req.body.commits[0].message;
+}else{
+
+	//the commit was not a redeploy, but was a normal commit 
+		printtext = "There was a push to remote repo at " + now.getTime()+ ' with data ' + req.body.commits[0].message;
+}
+
+	
 	
 	var fs = require('fs');
-fs.writeFile("git.txt", "There was a push to remote repo at " + now.getTime()+ ' with data ' + req.body.commits[0].message, function(err) {
+fs.writeFile("hooker.txt", printtext, function(err) {
     if(err) {
         console.log(err);
     } else {
