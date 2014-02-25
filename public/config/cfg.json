@@ -1,0 +1,7 @@
+{
+  "PATH": "/home/ubuntu/seeder",
+  "GITREPO": "seeder",
+  "BRANCHNAME": "v2_arbor",
+  "EXNAME": "app.js",
+  "LOGNAME":"node.log"
+}
