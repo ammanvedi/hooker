@@ -8,6 +8,10 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+var sys = require('sys');
+var exec = require('child_process').exec;
+
+function puts(error, stdout, stderr) { sys.puts(stdout) }
 
 var app = express();
 
@@ -38,10 +42,16 @@ var commit_msg = req.body.commits[0].message;
 var printtext;
 var now = new Date();
 
+
 if(commit_msg.indexOf("[redeploy]") != -1)
 {
 	//the commit message has a redeploy tag, so the script should run
 	printtext = "There was a REDEPLOY push to remote repo at " + now.getTime()+ ' with data ' + req.body.commits[0].message;
+	
+	//run script to redeploy based on preferences jSON
+	
+	exec("forever stop 1", puts);
+	
 }else{
 
 	//the commit was not a redeploy, but was a normal commit 
