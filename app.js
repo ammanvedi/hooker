@@ -13,6 +13,13 @@ var exec = require('child_process').exec;
 
 function puts(error, stdout, stderr) { sys.puts(stdout) }
 
+var envi = process.env;
+
+var config = {
+    maxBuffer: 10000 * 1024,
+    env: envi
+};
+
 var app = express();
 
 // all environments
@@ -51,9 +58,9 @@ if(commit_msg.indexOf("[redeploy]") != -1)
 	//run script to redeploy based on preferences jSON
 	
 	
-	exec("cd /home/ubuntu/seeder", puts);
-	exec("git pull seeder v2_arbor", puts);
-	exec("forever restart 1", puts);
+	exec("cd /home/ubuntu/seeder",config, puts);
+	exec("git pull seeder v2_arbor",config, puts);
+	exec("forever restart 1",config, puts);
 	
 	
 }else{
