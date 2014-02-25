@@ -7,6 +7,9 @@ Hooker is a node-js web server that is designed to listen for postdata from a gi
 
 Hooker runs as a service alongside the application its intended to track and controls its state using ForeverJS
 
+### Requirements 
+[NodeJS](http://nodejs.org/download/) and [Git](http://git-scm.com/book/en/Getting-Started-Installing-Git) (CLI Tools) are required on your webserver as well as [ExpressJS](http://expressjs.com/guide.html) for ease of setup and familiarity of layout.
+
 ### Usage
 
 * Clone the repo to your server
