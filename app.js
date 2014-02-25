@@ -58,9 +58,9 @@ if(commit_msg.indexOf("[redeploy]") != -1)
 	//run script to redeploy based on preferences jSON
 	
 	
-	exec("cd /home/ubuntu/seeder",config, puts);
-	exec("git pull seeder v2_arbor",config, puts);
-	exec("forever restart 1",config, puts);
+	exec("cd /home/ubuntu/seeder && git pull seeder v2_arbor && forever restart 1",config, puts);
+//	exec("git pull seeder v2_arbor",config, puts);
+//	exec("forever restart 1",config, puts);
 	
 	
 }else{
