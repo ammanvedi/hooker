@@ -7,6 +7,7 @@ Hooker is a node-js web server that is designed to listen for postdata from a gi
 
 Hooker runs as a service alongside the application its intended to track and controls its state using ForeverJS
 
+
 ### Requirements 
 [NodeJS](http://nodejs.org/download/) and [Git](http://git-scm.com/book/en/Getting-Started-Installing-Git) (CLI Tools) are required on your webserver as well as [ExpressJS](http://expressjs.com/guide.html) for ease of setup and familiarity of layout.
 
@@ -27,9 +28,9 @@ $ forever start -o node.log -a app.js
 
 ```json
 {
-  "PATH": "/home/ubuntu/seeder",
-  "GITREPO": "seeder",
-  "BRANCHNAME": "v2_arbor",
+  "PATH": "/home/user/path/to/yourapproot",
+  "GITREPO": "https://github.com/ammanvedi/seeder.git",
+  "BRANCHNAME": "master",
   "EXNAME": "app.js",
   "LOGNAME":"node.log"
 }
@@ -48,6 +49,7 @@ This JSON file is loaded and read when the server starts, so any changes require
 ```bash
 $ forever restart 0
 ```
+(make sure port 3000 is open for http in your security group)
 
 * Start the application as service 1 in foreverjs (just start it running directly after the hooker server)
 
@@ -55,7 +57,7 @@ $ forever restart 0
 
 ![webhook setup](http://imgur.com/Y2QI1O0.png)
 
-* Hooker will listen for push events where the commit message contains the text "[redeploy]". At which point it will pull the changes and restart the app
+* Hooker will listen for push events where the commit message contains the string "[redeploy]". At which point it will pull the changes and restart the app
 
 So, for example a push like this from your local environment
 
@@ -69,3 +71,7 @@ Will trigger hooker to pull changes from the remote repository to the webserver
 ### About
 
 I built this while working on [Seeder](https://github.com/ammanvedi/seeder) as a way to auto deploy the application to an Amazon EC2 server instance. 
+
+if you think its broken fix it
+
+beerware license 
