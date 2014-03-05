@@ -1,4 +1,4 @@
-![hooker](http://i.imgur.com/2Ztk0pb.png)
+
 
 # hooker
 ======
